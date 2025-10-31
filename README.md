@@ -75,39 +75,35 @@ Client-server chat applications are foundational to real-time communication over
 
 
 ## PROGRAM:
-## CLIENT:
+server
 ```
 import socket
 from datetime import datetime
-s=socket.socket()
-s.bind(('localhost',8000))
+s = socket.socket()
+s.bind(('localhost', 5000))
 s.listen(5)
-c,addr=s.accept()
-print("Client Address : ",addr)
+c, addr = s.accept()
+print("Client Address :", addr)
 now = datetime.now()
 c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
-ack=c.recv(1024).decode()
+ack = c.recv(1024).decode()
 if ack:
-   print(ack)
+    print(ack)
 c.close()
 ```
-
-## SERVER
+client
 ```
 import socket
-s=socket.socket()
-s.connect(('localhost',8000))
+s = socket.socket()
+s.connect(('localhost', 5000))
 print(s.getsockname())
 print(s.recv(1024).decode())
-s.send("acknowledgement recived from the server".encode())
+s.send("Acknowledgement received from the client".encode())
+s.close()
 ```
 
 ## OUTPUT:
-## CLIENT:
-<img width="569" height="132" alt="image" src="https://github.com/user-attachments/assets/da9fc9d4-7b38-4407-a395-7f2bc4e102a2" />
-
-## SERVER:
-<img width="585" height="150" alt="image" src="https://github.com/user-attachments/assets/8c6f09ac-5079-4eb8-86f7-2ce00b10bfc0" />
+![cnex2](https://github.com/user-attachments/assets/64e38d64-b7dc-4d02-b566-46bf0e1207b3)
 
 ## Result:
 Thus the study on Client Server Chat Applications has been performed
